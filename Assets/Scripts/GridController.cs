@@ -10,6 +10,7 @@ public class GridController : MonoBehaviour
     public GameObject RightPanel;
     public GameObject FrontPanel;
     public GameObject BackPanel;
+    //public GameObject RotateCenter;
 
     [Header("Grid size")]
     public int GridSizeX;
@@ -50,5 +51,8 @@ public class GridController : MonoBehaviour
             // material tiliing rescale
             FrontPanel.GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(GridSizeY, GridSizeX);
         }
+
+        //if (RotateCenter)
+        //    RotateCenter.transform.localPosition = new Vector3((float)GridSizeX / 2, (float)GridSizeY / 2, (float)GridSizeZ / 2);
     }
 }
