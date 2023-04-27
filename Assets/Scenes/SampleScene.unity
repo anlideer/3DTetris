@@ -147,8 +147,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97612493}
-  m_LocalRotation: {x: 0.24615157, y: -0.29848757, z: 0.07997952, w: 0.91865003}
-  m_LocalPosition: {x: 8.29, y: 8.88, z: -4.12}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.343412, y: 7.30374, z: -4.241355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -169,8 +169,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotateSensity: 0.2
+  MinAngle: -20
+  MaxAngle: 70
   RotateCenter: {fileID: 1462777410}
   MainCamera: {fileID: 963194228}
+--- !u!1 &145132006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145132007}
+  m_Layer: 0
+  m_Name: TetrisContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145132007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145132006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1701690389}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163561390
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,14 +668,75 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -1.02, z: -11.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1462777410}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1440934094
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1471992544062200550, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: m_Name
+      value: TetrisIshape
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882775175044404035, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+      propertyPath: DropInterval
+      value: 0.7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
 --- !u!1 &1462777409
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,15 +760,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462777409}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.02, y: 0.13, z: 9.99}
+  m_LocalRotation: {x: 0.13150986, y: -0.43692276, z: 0.06474509, w: 0.88747495}
+  m_LocalPosition: {x: -8.843412, y: -2.30374, z: 6.741355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 97612494}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: -36, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.858, y: -52.424, z: 0}
 --- !u!1 &1648976240
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,6 +901,7 @@ Transform:
   - {fileID: 1735519784}
   - {fileID: 507319257}
   - {fileID: 1648976241}
+  - {fileID: 145132007}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -830,6 +925,8 @@ MonoBehaviour:
   GridSizeX: 5
   GridSizeY: 8
   GridSizeZ: 5
+  DeadBlockMaterial: {fileID: 2100000, guid: dd2ada3ae064b6f418898c5d8c15419d, type: 2}
+  TetrisContainer: {fileID: 145132007}
 --- !u!1 &1735519783
 GameObject:
   m_ObjectHideFlags: 0

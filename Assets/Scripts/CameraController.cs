@@ -6,10 +6,10 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float RotateSensity = 0.2f;
-    public Transform RotateCenter;
-    public Transform MainCamera;
-    public float MinAngle = -20f;
+    public float MinAngle = -10f;
     public float MaxAngle = 70f;
+    public Transform RotateCenter; // if can automatically set the "rotate center" according to the grid world size, it would be better
+    public Transform MainCamera;
 
     private Vector3 lastPos;
 
