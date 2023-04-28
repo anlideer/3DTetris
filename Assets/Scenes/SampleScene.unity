@@ -628,7 +628,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -668,75 +668,63 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -1.02, z: -11.31}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.049999706, y: -1.0200002, z: -11.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1462777410}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1440934094
-PrefabInstance:
+--- !u!1 &1070931364
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200545, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1471992544062200550, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: m_Name
-      value: TetrisIshape
-      objectReference: {fileID: 0}
-    - target: {fileID: 1882775175044404035, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
-      propertyPath: DropInterval
-      value: 0.7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070931365}
+  - component: {fileID: 1070931366}
+  m_Layer: 0
+  m_Name: TetrisSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070931365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070931364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 8.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070931366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070931364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c3870a837558a43b36a0343d973c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TetrisPrefabs:
+  - {fileID: 1471992544062200550, guid: b56fad4cca04d374290b7272a5bac431, type: 3}
+  - {fileID: 6335664214669616055, guid: ffde1bfefc4063046a8b7788cea80c3b, type: 3}
+  - {fileID: 1028571333418991808, guid: 5ef2389823957484ea54ac3c76a51cb5, type: 3}
+  - {fileID: 5935553046140003841, guid: f9d8f850d1ae27b44ad0ccddc20beaa9, type: 3}
 --- !u!1 &1462777409
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,15 +748,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462777409}
-  m_LocalRotation: {x: 0.13150986, y: -0.43692276, z: 0.06474509, w: 0.88747495}
-  m_LocalPosition: {x: -8.843412, y: -2.30374, z: 6.741355}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.2699282, y: -0.14907227, z: 0.04234202, w: 0.95032805}
+  m_LocalPosition: {x: -8.843412, y: -2.30374, z: 6.7413554}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 97612494}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 16.858, y: -52.424, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.713, y: -17.83, z: 0}
 --- !u!1 &1648976240
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +915,7 @@ MonoBehaviour:
   GridSizeZ: 5
   DeadBlockMaterial: {fileID: 2100000, guid: dd2ada3ae064b6f418898c5d8c15419d, type: 2}
   TetrisContainer: {fileID: 145132007}
+  Spawner: {fileID: 1070931366}
 --- !u!1 &1735519783
 GameObject:
   m_ObjectHideFlags: 0

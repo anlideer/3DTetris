@@ -19,10 +19,14 @@ public class TetrisBlocks : MonoBehaviour
 
     private void Update()
     {
-        if (isDropping && lastDropTime + DropInterval < Time.timeSinceLevelLoad)
+        if (isDropping)
         {
-            DoDrop();
-            lastDropTime = Time.timeSinceLevelLoad;
+            DetectInput();
+            if (lastDropTime + DropInterval < Time.timeSinceLevelLoad)
+            {
+                DoDrop();
+                lastDropTime = Time.timeSinceLevelLoad;
+            }
         }
     }
 
@@ -30,7 +34,7 @@ public class TetrisBlocks : MonoBehaviour
     {
         Vector3 pos = transform.position;
         pos.y -= 1;
-        if (gridCtrl.IsTetrisDropValid(transform, pos))
+        if (gridCtrl.IsTetrisMovementValid(transform, pos))
         {
             transform.position = pos;
         }
@@ -38,6 +42,37 @@ public class TetrisBlocks : MonoBehaviour
         {
             isDropping = false;
             gridCtrl.UpdateGrid(transform);
+        }
+    }
+
+    private void DetectInput()
+    {
+        // only accept one transform operation at a time
+        Vector3 moveDirection = Vector3.zero;
+        if (Input.GetKeyDown(KeyCode.W))
+            moveDirection = new Vector3(0, 0, 1);
+        else if (Input.GetKeyDown(KeyCode.S))
+            moveDirection = new Vector3(0, 0, -1);
+        else if (Input.GetKeyDown(KeyCode.A))
+            moveDirection = new Vector3(-1, 0, 0);
+        else if (Input.GetKeyDown(KeyCode.D))
+            moveDirection = new Vector3(1, 0, 0);
+        // TODO: rotation
+
+
+        if (moveDirection != Vector3.zero)
+        {
+            MoveTetris(moveDirection);
+        }
+    }
+
+    private void MoveTetris(Vector3 direction)
+    {
+        Vector3 pos = transform.position;
+        pos += direction;
+        if (gridCtrl.IsTetrisMovementValid(transform, pos))
+        {
+            transform.position = pos;
         }
     }
 }

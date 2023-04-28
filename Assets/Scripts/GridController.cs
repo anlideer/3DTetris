@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class GridController : MonoBehaviour
 {
@@ -21,6 +19,7 @@ public class GridController : MonoBehaviour
     [Header("Other")]
     public Material DeadBlockMaterial;
     public Transform TetrisContainer;
+    public TetrisSpawner Spawner;
 
     private static GridController instance;
     private Transform[,,] gridData; 
@@ -40,41 +39,20 @@ public class GridController : MonoBehaviour
     /// <returns></returns>
     public bool IsTetrisMovementValid(Transform tetris, Vector3 to)
     {
-        float minX = transform.position.x;
-        float minY = transform.position.y;
-        float minZ = transform.position.z;
-        float maxX = minX + GridSizeX;
-        float maxY = minY + GridSizeY;
-        float maxZ = minX + GridSizeZ;
+        Vector3 change = to - tetris.position;
 
-        // check central block
-        if (to.x <= minX || to.y >= maxX ||
-            to.y <= minY || to.y >= maxY ||
-            to.z <= minZ || to.z >= maxZ)
-            return false;
-
-        // TODO: check child blocks
+        foreach(Transform child in tetris)
+        {
+            Vector3 currentPos = child.position + change;
+            if (!IsBlockPosAvailable(currentPos))
+            {
+                return false;
+            }
+        }
 
         return true;
     }
 
-    /// <summary>
-    /// Similar to IsTetrisMovementValid, but only check for drop
-    /// </summary>
-    /// <param name="tetris"></param>
-    /// <param name="to"></param>
-    /// <returns></returns>
-    public bool IsTetrisDropValid(Transform tetris, Vector3 to)
-    {
-        float minX = transform.position.x;
-        float minY = transform.position.y;
-        float minZ = transform.position.z;
-
-        if (to.x <= minX || to.y <= minY || to.z <= minZ)
-            return false;
-
-        return true;
-    }
 
     /// <summary>
     /// add the tetris to the grid data, when the tetris will not move anymore
@@ -83,21 +61,36 @@ public class GridController : MonoBehaviour
     public void UpdateGrid(Transform tetris)
     {
         List<Transform> blocksToUpdate = new List<Transform>();
+        bool isValid = true;
         foreach(Transform child in tetris)
         {
-            gridData[Mathf.FloorToInt(child.position.x),
+            Vector3Int ind = new Vector3Int(Mathf.FloorToInt(child.position.x),
                 Mathf.FloorToInt(child.position.y),
-                Mathf.FloorToInt(child.position.z)] = child;
-            child.GetComponent<MeshRenderer>().material = DeadBlockMaterial;
-            blocksToUpdate.Add(child);
+                Mathf.FloorToInt(child.position.z));
+            if (ind.x < 0 || ind.x >= GridSizeX || ind.y < 0 || ind.y >= GridSizeY || ind.z < 0 || ind.z >= GridSizeZ)
+            {
+                // TODO: game end or error?
+                isValid = false;
+            }
+            
+            if (isValid)
+            {
+                gridData[ind.x, ind.y, ind.z] = child;
+                child.GetComponent<MeshRenderer>().material = DeadBlockMaterial;
+                blocksToUpdate.Add(child);
+            }
         }
-
-        foreach(Transform block in blocksToUpdate)
+        if (isValid)
         {
-            block.parent = TetrisContainer;
-        }
+            foreach (Transform block in blocksToUpdate)
+            {
+                block.parent = TetrisContainer;
+            }
 
-        Destroy(tetris.gameObject);
+            Destroy(tetris.gameObject);
+            GenerateNewTetris();
+        }
+        // TODO: check and deal with game end?
     }
 
     #endregion
@@ -112,6 +105,11 @@ public class GridController : MonoBehaviour
             Debug.LogWarning("Two instances of GridController exist. This script should be singleton.");
 
         gridData = new Transform[GridSizeX, GridSizeY, GridSizeZ];
+    }
+
+    private void Start()
+    {
+        GenerateNewTetris();
     }
 
     void OnDrawGizmos()
@@ -146,6 +144,52 @@ public class GridController : MonoBehaviour
             BackPanel.transform.localPosition = new Vector3((float)GridSizeX / 2, (float)GridSizeY / 2, GridSizeZ);
             // material tiliing rescale
             FrontPanel.GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(GridSizeY, GridSizeX);
+        }
+    }
+
+    private bool IsBlockPosAvailable(Vector3 pos)
+    {
+        float minX = transform.position.x;
+        float minY = transform.position.y;
+        float minZ = transform.position.z;
+        float maxX = minX + GridSizeX;
+        float maxZ = minZ + GridSizeZ;
+
+        if (pos.x <= minX || pos.x >= maxX ||
+            pos.y <= minY ||    // y direction drop, ignore maxY
+            pos.z <= minZ || pos.z >= maxZ)
+        {
+            return false;
+        }
+
+        if (HasBlockAtIndex(new Vector3Int(Mathf.FloorToInt(pos.x - transform.position.x),
+            Mathf.FloorToInt(pos.y - transform.position.y),
+            Mathf.FloorToInt(pos.z - transform.position.z))))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool HasBlockAtIndex(Vector3Int ind)
+    {
+        if (ind.x < 0 || ind.x >= GridSizeX ||
+            ind.y < 0 || ind.y >= GridSizeY ||
+            ind.z < 0 || ind.z >= GridSizeZ)
+            return false;
+
+        if (gridData[ind.x, ind.y, ind.z] == null)
+            return false;
+        else
+            return true;
+    }
+
+    private void GenerateNewTetris()
+    {
+        if (Spawner)
+        {
+            Spawner.SpawnRandomTetris();
         }
     }
     #endregion
