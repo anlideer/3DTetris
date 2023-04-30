@@ -16,7 +16,8 @@ public class GridController : MonoBehaviour
     public int GridSizeY;
     public int GridSizeZ;
 
-    [Header("Other")]
+    [Header("Tetris")]
+    public float DropInterval = 1f;
     public Material DeadBlockMaterial;
     public Transform TetrisContainer;
     public TetrisSpawner Spawner;
@@ -37,13 +38,11 @@ public class GridController : MonoBehaviour
     /// <param name="tetris"></param>
     /// <param name="to"></param>
     /// <returns></returns>
-    public bool IsTetrisMovementValid(Transform tetris, Vector3 to)
+    public bool IsTetrisMovementValid(Transform tetris)
     {
-        Vector3 change = to - tetris.position;
-
         foreach(Transform child in tetris)
         {
-            Vector3 currentPos = child.position + change;
+            Vector3 currentPos = child.position;
             if (!IsBlockPosAvailable(currentPos))
             {
                 return false;

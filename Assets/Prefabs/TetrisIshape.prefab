@@ -436,4 +436,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569ec8de94970ca4ab6cfd251854f7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropInterval: 0.5
+  DropInterval: 1
