@@ -21,7 +21,6 @@ public class TetrisBlocks : MonoBehaviour
     {
         if (isDropping)
         {
-            DetectInput();
             if (lastDropTime + dropInterval < Time.timeSinceLevelLoad)
             {
                 DoDrop();
@@ -35,7 +34,7 @@ public class TetrisBlocks : MonoBehaviour
         Vector3 pos = transform.position;
         pos.y -= 1f;
         transform.position = pos;
-        if (!gridCtrl.IsTetrisMovementValid(transform))
+        if (!gridCtrl.IsTetrisMovementValid(transform, true))
         {
             pos.y += 1f;
             transform.position = pos;
@@ -44,42 +43,7 @@ public class TetrisBlocks : MonoBehaviour
         }
     }
 
-    private void DetectInput()
-    {
-        // only accept one transform operation at a time
-        Vector3 moveDirection = Vector3.zero;
-        Vector3 rotateAngle = Vector3.zero;
-        // position
-        if (Input.GetKeyDown(KeyCode.W))
-            moveDirection = new Vector3(0, 0, 1);
-        else if (Input.GetKeyDown(KeyCode.S))
-            moveDirection = new Vector3(0, 0, -1);
-        else if (Input.GetKeyDown(KeyCode.A))
-            moveDirection = new Vector3(-1, 0, 0);
-        else if (Input.GetKeyDown(KeyCode.D))
-            moveDirection = new Vector3(1, 0, 0);
-        // rotation
-        else if (Input.GetKeyDown(KeyCode.Q))   // x
-            rotateAngle = new Vector3(90, 0, 0);
-        else if (Input.GetKeyDown(KeyCode.E))   // y
-            rotateAngle = new Vector3(0, 90, 0);
-        else if (Input.GetKeyDown(KeyCode.R))   // z
-            rotateAngle = new Vector3(0, 0, 90);
-        // speed dropping down
-        else if (Input.GetKeyDown(KeyCode.Space))
-            DropToBottom();
-
-        if (moveDirection != Vector3.zero)
-        {
-            MoveTetris(moveDirection);
-        }
-        if (rotateAngle != Vector3.zero)
-        {
-            RotateTetris(rotateAngle);
-        }
-    }
-
-    private void MoveTetris(Vector3 direction)
+    public void MoveTetris(Vector3 direction)
     {
         Vector3 pos = transform.position;
         pos += direction;
@@ -91,7 +55,7 @@ public class TetrisBlocks : MonoBehaviour
         }
     }
 
-    private void RotateTetris(Vector3 angle)
+    public void RotateTetris(Vector3 angle)
     {
         transform.Rotate(angle, Space.World);
         if (!gridCtrl.IsTetrisMovementValid(transform))
@@ -100,7 +64,7 @@ public class TetrisBlocks : MonoBehaviour
         }
     }
 
-    private void DropToBottom()
+    public void DropToBottom()
     {
         while (isDropping)
         {

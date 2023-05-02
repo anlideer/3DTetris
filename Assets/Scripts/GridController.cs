@@ -38,12 +38,12 @@ public class GridController : MonoBehaviour
     /// <param name="tetris"></param>
     /// <param name="to"></param>
     /// <returns></returns>
-    public bool IsTetrisMovementValid(Transform tetris)
+    public bool IsTetrisMovementValid(Transform tetris, bool ignoreMaxY = false)
     {
         foreach(Transform child in tetris)
         {
             Vector3 currentPos = child.position;
-            if (!IsBlockPosAvailable(currentPos))
+            if (!IsBlockPosAvailable(currentPos, ignoreMaxY))
             {
                 return false;
             }
@@ -76,6 +76,7 @@ public class GridController : MonoBehaviour
             {
                 gridData[ind.x, ind.y, ind.z] = child;
                 child.GetComponent<MeshRenderer>().material = DeadBlockMaterial;
+                child.gameObject.layer = 0;
                 blocksToUpdate.Add(child);
             }
         }
@@ -98,7 +99,7 @@ public class GridController : MonoBehaviour
 
     private void Awake()
     {
-        if (!instance)
+        if (instance == null)
             instance = this;
         else
             Debug.LogWarning("Two instances of GridController exist. This script should be singleton.");
@@ -146,12 +147,13 @@ public class GridController : MonoBehaviour
         }
     }
 
-    private bool IsBlockPosAvailable(Vector3 pos)
+    private bool IsBlockPosAvailable(Vector3 pos, bool ignoreMaxY)
     {
         float minX = transform.position.x;
         float minY = transform.position.y;
         float minZ = transform.position.z;
         float maxX = minX + GridSizeX;
+        float maxY = minY + GridSizeY;
         float maxZ = minZ + GridSizeZ;
 
         if (pos.x <= minX || pos.x >= maxX ||
@@ -160,6 +162,9 @@ public class GridController : MonoBehaviour
         {
             return false;
         }
+
+        if (!ignoreMaxY && pos.y >= maxY)
+            return false;
 
         if (HasBlockAtIndex(new Vector3Int(Mathf.FloorToInt(pos.x - transform.position.x),
             Mathf.FloorToInt(pos.y - transform.position.y),

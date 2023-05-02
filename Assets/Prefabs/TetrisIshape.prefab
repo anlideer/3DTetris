@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1471992542483047432}
   - component: {fileID: 1471992542483047433}
   - component: {fileID: 1471992542483047438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1471992543104710672}
   - component: {fileID: 1471992543104710673}
   - component: {fileID: 1471992543104710678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 1471992543480764696}
   - component: {fileID: 1471992543480764697}
   - component: {fileID: 1471992543480764702}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 1471992543792692212}
   - component: {fileID: 1471992543792692213}
   - component: {fileID: 1471992543792691978}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1471992544062200545}
   - component: {fileID: 1882775175044404035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TetrisIshape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,4 +436,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569ec8de94970ca4ab6cfd251854f7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropInterval: 1

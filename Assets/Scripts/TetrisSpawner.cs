@@ -11,6 +11,9 @@ public class TetrisSpawner : MonoBehaviour
         int num = TetrisPrefabs.Length;
         int ind = Random.Range(0, num);
         GameObject prefabToSpawn = TetrisPrefabs[ind];
-        Instantiate(prefabToSpawn, transform.position, transform.rotation, transform);
+        GameObject tetris = Instantiate(prefabToSpawn, transform.position, transform.rotation, transform);
+        TetrisBlocks tetrisScript = tetris.GetComponent<TetrisBlocks>();
+        if (tetrisScript)
+            InteractionCenter.Instance.ActiveTetris = tetrisScript;
     }
 }

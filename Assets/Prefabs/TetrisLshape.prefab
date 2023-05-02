@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6335664214669616054}
   - component: {fileID: 409760958108895828}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TetrisLshape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 6335664214859415976}
   - component: {fileID: 6335664214859415977}
   - component: {fileID: 6335664214859415978}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 6335664215296550376}
   - component: {fileID: 6335664215296550377}
   - component: {fileID: 6335664215296550378}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 6335664215469414434}
   - component: {fileID: 6335664215469414435}
   - component: {fileID: 6335664215469414436}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 6335664215637614053}
   - component: {fileID: 6335664215637614054}
   - component: {fileID: 6335664215637614055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
