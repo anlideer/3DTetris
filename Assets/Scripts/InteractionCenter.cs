@@ -13,6 +13,14 @@ public class InteractionCenter : MonoBehaviour
         get { return instance; }
     }
 
+    public void MoveTetris(Vector3 moveDirection)
+    {
+        if (moveDirection != Vector3.zero && ActiveTetris)
+        {
+            ActiveTetris.MoveTetris(moveDirection);
+        }
+    }
+
     private void Awake()
     {
         if (instance == null)
