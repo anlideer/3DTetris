@@ -21,6 +21,14 @@ public class InteractionCenter : MonoBehaviour
         }
     }
 
+    public void RotateTetris(Vector3 rotateAngle)
+    {
+        if (rotateAngle != Vector3.zero && ActiveTetris)
+        {
+            ActiveTetris.RotateTetris(rotateAngle);
+        }
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -49,11 +57,11 @@ public class InteractionCenter : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
             moveDirection = new Vector3(1, 0, 0);
         // rotation
-        else if (Input.GetKeyDown(KeyCode.Q))   // x
+        else if (Input.GetKeyDown(KeyCode.Q))   // q
             rotateAngle = new Vector3(90, 0, 0);
-        else if (Input.GetKeyDown(KeyCode.E))   // y
+        else if (Input.GetKeyDown(KeyCode.E))   // e
             rotateAngle = new Vector3(0, 90, 0);
-        else if (Input.GetKeyDown(KeyCode.R))   // z
+        else if (Input.GetKeyDown(KeyCode.R))   // r
             rotateAngle = new Vector3(0, 0, 90);
         // speed dropping down
         else if (Input.GetKeyDown(KeyCode.Space) && ActiveTetris)

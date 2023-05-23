@@ -42,4 +42,19 @@ public class MovementUI : MonoBehaviour
     {
         InteractionCenter.Instance.MoveTetris(new Vector3(1, 0, 0));
     }
+
+    public void RotateTetrisQ()
+    {
+        InteractionCenter.Instance.RotateTetris(new Vector3(90, 0, 0));
+    }
+
+    public void RotateTetrisE()
+    {
+        InteractionCenter.Instance.RotateTetris(new Vector3(0, 90, 0));
+    }
+
+    public void RotateTetrisR()
+    {
+        InteractionCenter.Instance.RotateTetris(new Vector3(0, 0, 90));
+    }
 }
