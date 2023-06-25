@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TetrisBlocks : MonoBehaviour
 {
+    public UnityEvent TetrisMoved;
+    public UnityEvent TetrisDestroyed;
+
     private float lastDropTime;
     private GridController gridCtrl;
     private bool isDropping;
@@ -15,6 +19,11 @@ public class TetrisBlocks : MonoBehaviour
         isDropping = true;
         gridCtrl = GridController.Instance;
         dropInterval = gridCtrl.DropInterval;
+
+        if (TetrisMoved == null)
+            TetrisMoved = new UnityEvent();
+        if (TetrisDestroyed == null)
+            TetrisDestroyed = new UnityEvent();
     }
 
     private void Update()
@@ -53,6 +62,7 @@ public class TetrisBlocks : MonoBehaviour
             pos -= direction;
             transform.position = pos;
         }
+        TetrisMoved.Invoke();
     }
 
     public void RotateTetris(Vector3 angle)
@@ -60,7 +70,8 @@ public class TetrisBlocks : MonoBehaviour
         transform.Rotate(angle, Space.World);
         if (!gridCtrl.IsTetrisMovementValid(transform))
         {
-            transform.Rotate(-angle, Space.World);
+            transform.Rotate(-angle, Space.World); 
+            TetrisMoved.Invoke();
         }
     }
 
@@ -70,5 +81,10 @@ public class TetrisBlocks : MonoBehaviour
         {
             DoDrop();
         }
+    }
+
+    private void OnDestroy()
+    {
+        TetrisDestroyed.Invoke();
     }
 }

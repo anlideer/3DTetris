@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridController : MonoBehaviour
@@ -61,7 +62,7 @@ public class GridController : MonoBehaviour
     {
         List<Transform> blocksToUpdate = new List<Transform>();
         bool isValid = true;
-        foreach(Transform child in tetris)
+        foreach (Transform child in tetris)
         {
             Vector3Int ind = new Vector3Int(Mathf.FloorToInt(child.position.x),
                 Mathf.FloorToInt(child.position.y),
@@ -70,8 +71,9 @@ public class GridController : MonoBehaviour
             {
                 // TODO: game end or error?
                 isValid = false;
+                Debug.LogError("Grid update failed.");
             }
-            
+
             if (isValid)
             {
                 gridData[ind.x, ind.y, ind.z] = child;
@@ -88,11 +90,12 @@ public class GridController : MonoBehaviour
             }
 
             Destroy(tetris.gameObject);
+
+            UpdateLayers();
             GenerateNewTetris();
         }
         // TODO: check and deal with game end?
     }
-
     #endregion
 
     #region private
@@ -147,6 +150,7 @@ public class GridController : MonoBehaviour
         }
     }
 
+
     private bool IsBlockPosAvailable(Vector3 pos, bool ignoreMaxY)
     {
         float minX = transform.position.x;
@@ -176,6 +180,7 @@ public class GridController : MonoBehaviour
         return true;
     }
 
+
     private bool HasBlockAtIndex(Vector3Int ind)
     {
         if (ind.x < 0 || ind.x >= GridSizeX ||
@@ -194,6 +199,66 @@ public class GridController : MonoBehaviour
         if (Spawner)
         {
             Spawner.SpawnRandomTetris();
+        }
+    }
+
+    private void UpdateLayers()
+    {
+        for (int y = GridSizeY - 1; y >= 0; y--)
+        {
+            if (CheckFullLayer(y))
+            {
+                // delete layer and blocks
+                DeleteLayer(y);
+                // drop down the rest layers
+                DropDownLayerTill(y);
+                // add score
+                GameManager.Score++;
+            }
+        }
+    }
+
+    private bool CheckFullLayer(int y)
+    {
+        for (int i = 0; i < GridSizeX; i++)
+        {
+            for (int j = 0; j < GridSizeZ; j++)
+            {
+                if (gridData[i, y, j] == null)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    private void DeleteLayer(int y)
+    {
+        for (int i = 0; i < GridSizeX; i++)
+        {
+            for (int j = 0; j < GridSizeZ; j++)
+            {
+                Destroy(gridData[i, y, j].gameObject);
+                gridData[i, y, j] = null;
+            }
+        }
+    }
+
+    private void DropDownLayerTill(int y)
+    {
+        for (int j = y + 1; j < GridSizeY; j++)
+        {
+            for (int i = 0; i < GridSizeX; i++)
+            {
+                for (int k = 0; k < GridSizeZ; k++)
+                {
+                    if (gridData[i, j, k] != null) 
+                    {
+                        gridData[i, j - 1, k] = gridData[i, j, k];
+                        gridData[i, j, k] = null;
+                        gridData[i, j - 1, k].transform.position += Vector3.down;
+                    }
+                }
+            }
         }
     }
     #endregion
