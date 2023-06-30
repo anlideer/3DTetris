@@ -58,6 +58,14 @@ public class GameManager : MonoBehaviour
 
     private void OnGameEnd()
     {
-
+        bool isHighest = false;
+        int highest = PlayerPrefs.GetInt("Score", 0);
+        if (Score > highest)
+        {
+            isHighest = true;
+            highest = Score;
+            PlayerPrefs.SetInt("Score", Score);
+        }
+        GetComponent<SystemUI>().ShowEndMenu(Score, highest, isHighest);
     }
 }
