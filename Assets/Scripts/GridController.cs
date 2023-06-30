@@ -69,9 +69,12 @@ public class GridController : MonoBehaviour
                 Mathf.FloorToInt(child.position.z));
             if (ind.x < 0 || ind.x >= GridSizeX || ind.y < 0 || ind.y >= GridSizeY || ind.z < 0 || ind.z >= GridSizeZ)
             {
-                // TODO: game end or error?
                 isValid = false;
                 Debug.LogError("Grid update failed.");
+                if (ind.y >= GridSizeY)
+                {
+                    GameManager.IsGameEnd = true;
+                }
             }
 
             if (isValid)
@@ -94,7 +97,6 @@ public class GridController : MonoBehaviour
             UpdateLayers();
             GenerateNewTetris();
         }
-        // TODO: check and deal with game end?
     }
     #endregion
 

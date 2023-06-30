@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class TetrisSpawner : MonoBehaviour
 {
-    public GameObject[] TetrisPrefabs;
+    public TetrisPool Pool;
     public Material GhostMaterial;
     public PreviewSpawner Preview;
 
+    private GameObject[] TetrisPrefabs;
     private GameObject nextTetris;
+
+    private void Awake()
+    {
+        TetrisPrefabs = Pool.GetPrefabPool();
+    }
 
     public void SpawnRandomTetris()
     {
