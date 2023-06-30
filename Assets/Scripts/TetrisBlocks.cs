@@ -38,6 +38,7 @@ public class TetrisBlocks : MonoBehaviour
         }
     }
 
+
     private void DoDrop()
     {
         Vector3 pos = transform.position;
@@ -71,8 +72,8 @@ public class TetrisBlocks : MonoBehaviour
         if (!gridCtrl.IsTetrisMovementValid(transform))
         {
             transform.Rotate(-angle, Space.World); 
-            TetrisMoved.Invoke();
         }
+        TetrisMoved.Invoke();
     }
 
     public void DropToBottom()

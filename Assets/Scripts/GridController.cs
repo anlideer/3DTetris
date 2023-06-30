@@ -39,7 +39,7 @@ public class GridController : MonoBehaviour
     /// <param name="tetris"></param>
     /// <param name="to"></param>
     /// <returns></returns>
-    public bool IsTetrisMovementValid(Transform tetris, bool ignoreMaxY = false)
+    public bool IsTetrisMovementValid(Transform tetris, bool ignoreMaxY = true)
     {
         foreach(Transform child in tetris)
         {
